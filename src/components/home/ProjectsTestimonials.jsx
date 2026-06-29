@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function ProjectsTestimonials() {
   const projects = [
@@ -192,7 +193,7 @@ export default function ProjectsTestimonials() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <img 
-                    src="/images/ramesh_avatar.png" 
+                    src={getImageUrl('/images/ramesh_avatar.png')} 
                     alt="Ramesh Kumar" 
                     style={{
                       width: '48px',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function ProductDetailsRelated({ onProductClick, currentProductId }) {
   const relatedList = [
@@ -129,7 +130,7 @@ export default function ProductDetailsRelated({ onProductClick, currentProductId
                 padding: '8px'
               }}>
                 <img 
-                  src={prod.image} 
+                  src={getImageUrl(prod.image)} 
                   alt={prod.name} 
                   style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
                 />

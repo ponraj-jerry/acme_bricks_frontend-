@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Eye } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function AboutMissionVision() {
   return (
@@ -127,7 +128,7 @@ export default function AboutMissionVision() {
               boxShadow: '0 8px 30px rgba(0,0,0,0.05)'
             }}>
               <img 
-                src="/images/about_warehouse.png" 
+                src={getImageUrl('/images/about_warehouse.png')} 
                 alt="ACME Bricks Stacking Warehouse" 
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               />

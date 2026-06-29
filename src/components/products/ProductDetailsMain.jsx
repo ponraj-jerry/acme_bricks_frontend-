@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Star, MessageSquare, Download, Share2, Shield, Leaf, Droplet, BadgeDollarSign, Maximize } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function ProductDetailsMain({ product, onQuoteClick }) {
   const [activeThumb, setActiveThumb] = useState(0);
 
   // Fallback specs in case they are missing from object
   const name = product.name || 'Fly Ash Brick';
-  const image = product.image || '/images/fly_ash_brick.png';
+  const image = getImageUrl(product.image);
   const sizeStr = product.dimensions ? `${product.dimensions.length} x ${product.dimensions.width} x ${product.dimensions.height} mm` : '190 x 90 x 90 mm';
   const strengthStr = product.strength || '7.5 N/mm²';
   

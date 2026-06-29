@@ -1,10 +1,11 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function ProductsHero({ onHomeClick }) {
   return (
     <div style={{
       position: 'relative',
-      backgroundImage: "linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.8)), url('/images/products_hero_bg.png')",
+      backgroundImage: `linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.8)), url('${getImageUrl('/images/products_hero_bg.png')}')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       padding: '50px 0',

@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 import { Plus, Edit2, Trash2, Check, X, Shield, RefreshCw } from 'lucide-react';
+import { getImageUrl } from '../utils/imageHelper.js';
 
 export default function Dashboard({ products, onAddProduct, onUpdateProduct, onDeleteProduct, refreshCatalog }) {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editProductId, setEditProductId] = useState(null);
   
+  const LOCAL_IMAGES = [
+    { path: '/images/fly_ash_brick.png', name: 'Fly Ash Brick' },
+    { path: '/images/solid_block.png', name: 'Solid Block' },
+    { path: '/images/paver_block.png', name: 'Paver Block' },
+    { path: '/images/interlock_block.png', name: 'Interlock Block' },
+    { path: '/images/hollow_block.png', name: 'Hollow Block' },
+    { path: '/images/kerb_stone.png', name: 'Kerb Stone' },
+    { path: '/images/clay_brick.png', name: 'Clay Brick' },
+    { path: '/images/slate_brick.png', name: 'Slate Brick' },
+    { path: '/images/fire_brick.png', name: 'Fire Brick' },
+    { path: '/images/sandstone_brick.png', name: 'Sandstone Block' },
+    { path: '/images/glazed_brick.png', name: 'Glazed Facing Brick' }
+  ];
+
   const [formData, setFormData] = useState({
     name: '',
     type: 'Clay',
@@ -14,7 +29,10 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
     height: '76',
     stock: '5000',
     description: '',
-    characteristics: ''
+    characteristics: '',
+    image: '/images/clay_brick.png',
+    imageType: 'local',
+    customImageUrl: ''
   });
 
   const handleInputChange = (e) => {
@@ -32,7 +50,10 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
       height: '76',
       stock: '5000',
       description: '',
-      characteristics: ''
+      characteristics: '',
+      image: '/images/clay_brick.png',
+      imageType: 'local',
+      customImageUrl: ''
     });
     setShowAddForm(false);
     setEditProductId(null);
@@ -40,6 +61,7 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
 
   const handleEditClick = (product) => {
     setEditProductId(product.id);
+    const isLocal = product.image && LOCAL_IMAGES.some(img => img.path === product.image);
     setFormData({
       name: product.name,
       type: product.type,
@@ -49,7 +71,10 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
       height: String(product.dimensions.height),
       stock: String(product.stock),
       description: product.description || '',
-      characteristics: product.characteristics.join('\n')
+      characteristics: product.characteristics.join('\n'),
+      image: isLocal ? product.image : '/images/clay_brick.png',
+      imageType: isLocal ? 'local' : 'custom',
+      customImageUrl: isLocal ? '' : (product.image || '')
     });
     setShowAddForm(true);
   };
@@ -60,6 +85,10 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
     const charsArray = formData.characteristics
       ? formData.characteristics.split('\n').filter(line => line.trim() !== '')
       : [];
+
+    const imageToSave = formData.imageType === 'custom' 
+      ? formData.customImageUrl 
+      : formData.image;
 
     const productPayload = {
       name: formData.name,
@@ -72,7 +101,8 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
       },
       stock: Number(formData.stock),
       description: formData.description,
-      characteristics: charsArray
+      characteristics: charsArray,
+      image: imageToSave
     };
 
     if (editProductId) {
@@ -158,9 +188,82 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
                   <input type="number" name="stock" value={formData.stock} onChange={handleInputChange} className="form-input" />
                 </div>
 
-                <div className="input-group" style={{ marginBottom: 0 }}>
+                <div className="input-group">
                   <label className="input-label">Product Description</label>
-                  <textarea rows="3" name="description" value={formData.description} onChange={handleInputChange} className="form-textarea" placeholder="Brief copy for storefront listing..."></textarea>
+                  <textarea rows="2" name="description" value={formData.description} onChange={handleInputChange} className="form-textarea" placeholder="Brief copy for storefront listing..."></textarea>
+                </div>
+
+                <div className="input-group" style={{ marginBottom: 0 }}>
+                  <label className="input-label">Product Image Source</label>
+                  <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', cursor: 'pointer', color: 'var(--text-secondary)' }}>
+                      <input 
+                        type="radio" 
+                        name="imageType" 
+                        value="local" 
+                        checked={formData.imageType === 'local'} 
+                        onChange={(e) => setFormData(prev => ({ ...prev, imageType: e.target.value }))} 
+                      />
+                      Local Template
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', cursor: 'pointer', color: 'var(--text-secondary)' }}>
+                      <input 
+                        type="radio" 
+                        name="imageType" 
+                        value="custom" 
+                        checked={formData.imageType === 'custom'} 
+                        onChange={(e) => setFormData(prev => ({ ...prev, imageType: e.target.value }))} 
+                      />
+                      Custom URL/Link
+                    </label>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    {formData.imageType === 'local' ? (
+                      <select 
+                        name="image" 
+                        value={formData.image} 
+                        onChange={handleInputChange} 
+                        className="form-select" 
+                        style={{ flex: 1, padding: '10px' }}
+                      >
+                        {LOCAL_IMAGES.map(img => (
+                          <option key={img.path} value={img.path}>{img.name}</option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input 
+                        type="text" 
+                        name="customImageUrl" 
+                        value={formData.customImageUrl} 
+                        onChange={handleInputChange} 
+                        className="form-input" 
+                        placeholder="e.g. https://images.unsplash.com/..." 
+                        style={{ flex: 1 }}
+                      />
+                    )}
+
+                    {/* Small Thumbnail Preview */}
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '6px',
+                      border: '1px solid var(--border)',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      overflow: 'hidden',
+                      flexShrink: 0
+                    }}>
+                      <img 
+                        src={getImageUrl(formData.imageType === 'local' ? formData.image : formData.customImageUrl)} 
+                        alt="Preview" 
+                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                        onError={(e) => { e.target.src = '/images/fly_ash_brick.png'; }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -236,10 +339,33 @@ export default function Dashboard({ products, onAddProduct, onUpdateProduct, onD
                   borderBottom: '1px solid var(--border)',
                   transition: 'background 0.2s'
                 }} className="table-row-hover">
-                  <td style={{ padding: '16px 20px' }}>
-                    <div style={{ fontWeight: 600, color: '#fff' }}>{product.name}</div>
-                    <div style={{ fontSize: '12px', color: 'var(--text-muted)', maxWidth: '280px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                      {product.description}
+                   <td style={{ padding: '16px 20px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{
+                        width: '36px',
+                        height: '36px',
+                        borderRadius: '4px',
+                        overflow: 'hidden',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid var(--border)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <img 
+                          src={getImageUrl(product.image)} 
+                          alt="" 
+                          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                          onError={(e) => { e.target.src = '/images/fly_ash_brick.png'; }}
+                        />
+                      </div>
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontWeight: 600, color: '#fff' }}>{product.name}</div>
+                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', maxWidth: '240px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                          {product.description}
+                        </div>
+                      </div>
                     </div>
                   </td>
                   <td style={{ padding: '16px 20px' }}>

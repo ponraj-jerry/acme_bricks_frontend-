@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cog, ShieldCheck, Leaf, Truck } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function AboutCompany() {
   const bullets = [
@@ -102,7 +103,7 @@ export default function AboutCompany() {
               boxShadow: '0 8px 30px rgba(0,0,0,0.06)'
             }}>
               <img 
-                src="/images/about_office.png" 
+                src={getImageUrl('/images/about_office.png')} 
                 alt="ACME Bricks Factory" 
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               />

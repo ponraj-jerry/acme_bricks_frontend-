@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function FeaturedProductsSection({ products, onQuoteClick, onViewDetails }) {
   // Use first 4 products from backend if loaded, otherwise fall back to matching image specs
@@ -95,7 +96,7 @@ export default function FeaturedProductsSection({ products, onQuoteClick, onView
                   padding: '10px'
                 }}>
                   <img 
-                    src={prod.image || '/images/fly_ash_brick.png'} 
+                    src={getImageUrl(prod.image)} 
                     alt={prod.name} 
                     style={{
                       maxHeight: '100%',

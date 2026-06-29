@@ -44,6 +44,7 @@ const MOCK_CATALOG = [
     "type": "Clay",
     "price": 1.25,
     "dimensions": { "length": 230, "width": 110, "height": 76 },
+    "image": "/images/clay_brick.png",
     "description": "Standard rustic red clay brick. Offers superior thermal mass, natural aesthetics, and timeless strength for residential and commercial building construction.",
     "stock": 25000,
     "characteristics": ["Compressive Strength: 30 MPa", "Water Absorption: < 8%", "Durability: High Class"]
@@ -54,6 +55,7 @@ const MOCK_CATALOG = [
     "type": "Engineering",
     "price": 2.10,
     "dimensions": { "length": 215, "width": 102, "height": 65 },
+    "image": "/images/slate_brick.png",
     "description": "Dense, high-strength Class A engineering brick. Excellent for retaining walls, structural foundations, and high dampness environments due to very low water absorption.",
     "stock": 14000,
     "characteristics": ["Compressive Strength: 75 MPa", "Water Absorption: < 4.5%", "Durability: Extreme Class"]
@@ -64,6 +66,7 @@ const MOCK_CATALOG = [
     "type": "Refractory",
     "price": 3.80,
     "dimensions": { "length": 230, "width": 114, "height": 64 },
+    "image": "/images/fire_brick.png",
     "description": "Premium thermal refractory brick manufactured with fireclay. Designed specifically to withstand intense temperatures inside fireboxes, kilns, pizza ovens, and chimneys.",
     "stock": 3500,
     "characteristics": ["Max Temp: 1400°C", "Thermal Shock Resistance: Outstanding", "Density: Medium-High"]
@@ -74,6 +77,7 @@ const MOCK_CATALOG = [
     "type": "Natural Stone",
     "price": 5.50,
     "dimensions": { "length": 300, "width": 150, "height": 100 },
+    "image": "/images/sandstone_brick.png",
     "description": "Hand-chiseled premium natural sandstone block. Best for visual accent facades, boundary fencing, garden pathways, and high-end exterior landscaping.",
     "stock": 1200,
     "characteristics": ["Texture: Natural Chiseled", "Finish: Raw Stone", "Maintenance: Low"]
@@ -84,6 +88,7 @@ const MOCK_CATALOG = [
     "type": "Glazed Facing",
     "price": 4.25,
     "dimensions": { "length": 215, "width": 102, "height": 65 },
+    "image": "/images/glazed_brick.png",
     "description": "Modern glazed facing brick featuring a reflective semi-gloss black finish. Highly sought after by architects for contemporary urban styling and facade highlights.",
     "stock": 6000,
     "characteristics": ["Finish: Semi-Gloss Glazed", "Fade Resistance: UV Stable", "Water Repellent: 100%"]
@@ -176,7 +181,7 @@ export default function App() {
       const localProduct = {
         ...newProduct,
         id: String(Date.now()),
-        image: 'clay_brick.png'
+        image: '/images/clay_brick.png'
       };
       setProducts(prev => [...prev, localProduct]);
     }

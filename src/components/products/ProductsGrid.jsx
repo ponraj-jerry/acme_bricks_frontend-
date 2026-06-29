@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Check, Grid as GridIcon, List } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function ProductsGrid({
   products = [],
@@ -170,7 +171,7 @@ export default function ProductsGrid({
               padding: '10px'
             }}>
               <img
-                src={prod.image || '/images/fly_ash_brick.png'}
+                src={getImageUrl(prod.image)}
                 alt={prod.name}
                 style={{
                   maxHeight: '100%',

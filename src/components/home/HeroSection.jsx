@@ -1,11 +1,12 @@
 import React from 'react';
 import { ShieldCheck, Leaf, Clock, Phone, MessageSquare, Mail } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function HeroSection({ onExploreClick, onQuoteClick }) {
   return (
     <div style={{
       position: 'relative',
-      backgroundImage: "linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.75)), url('/images/hero_bg.png')",
+      backgroundImage: `linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.75)), url('${getImageUrl('/images/hero_bg.png')}')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       minHeight: '650px',

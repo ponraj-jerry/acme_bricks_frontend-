@@ -1,5 +1,6 @@
 import React from 'react';
 import { Play, Award, Building, Heart, Users } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function AboutUs() {
   const stats = [
@@ -32,7 +33,7 @@ export default function AboutUs() {
               cursor: 'pointer'
             }} className="image-hover-zoom">
               <img 
-                src="/images/about_office.png" 
+                src={getImageUrl('/images/about_office.png')} 
                 alt="ACME Bricks Office" 
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function ProductCategories({ onCategorySelect }) {
   const categories = [
@@ -97,7 +98,7 @@ export default function ProductCategories({ onCategorySelect }) {
                 padding: '10px'
               }}>
                 <img 
-                  src={cat.image} 
+                  src={getImageUrl(cat.image)} 
                   alt={cat.name} 
                   style={{
                     maxHeight: '100%',
