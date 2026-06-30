@@ -4,9 +4,40 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 
-// --- Automated Asset Setup ---
+// --- Automated Asset Setup & Backend Cleanup ---
 const brainDir = 'C:\\Users\\DELL\\.gemini\\antigravity-ide\\brain\\fb1e32b2-637e-467c-ba5b-357a226c38f8';
-const destDir = path.resolve('..', 'backend', 'public', 'images');
+const destDir = path.resolve('public', 'images');
+
+// Clean up backend assets and public directory, and backend utility scripts
+try {
+  const backendPublicDir = path.resolve('..', 'backend', 'public');
+  if (fs.existsSync(backendPublicDir)) {
+    fs.rmSync(backendPublicDir, { recursive: true, force: true });
+    console.log('[Cleanup] Removed backend public directory');
+  }
+  const copyImagesJs = path.resolve('..', 'backend', 'src', 'utils', 'copyImages.js');
+  if (fs.existsSync(copyImagesJs)) {
+    fs.unlinkSync(copyImagesJs);
+    console.log('[Cleanup] Removed backend copyImages.js script');
+  }
+  const downloadAssetsJs = path.resolve('..', 'backend', 'download_assets.js');
+  if (fs.existsSync(downloadAssetsJs)) {
+    fs.unlinkSync(downloadAssetsJs);
+    console.log('[Cleanup] Removed backend download_assets.js script');
+  }
+  const copyAssetsBat = path.resolve('..', 'backend', 'copy_assets.bat');
+  if (fs.existsSync(copyAssetsBat)) {
+    fs.unlinkSync(copyAssetsBat);
+    console.log('[Cleanup] Removed backend copy_assets.bat script');
+  }
+  const copyLog = path.resolve('..', 'backend', 'copy_log.txt');
+  if (fs.existsSync(copyLog)) {
+    fs.unlinkSync(copyLog);
+    console.log('[Cleanup] Removed backend copy_log.txt');
+  }
+} catch (cleanupErr) {
+  console.error('[Cleanup] Failed to clean up backend files:', cleanupErr.message);
+}
 
 const assets = {
   'hero_bg.png': 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=80',

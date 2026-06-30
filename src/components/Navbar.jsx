@@ -36,7 +36,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
 
         {/* Nav Links */}
         <div style={{ display: 'flex', gap: '8px' }}>
-          <button
+          <button 
             onClick={() => setActiveTab('home')}
             className={`btn ${activeTab === 'home' ? 'btn-primary' : 'btn-secondary'}`}
             style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '8px' }}
@@ -44,17 +44,17 @@ export default function Navbar({ activeTab, setActiveTab }) {
             <Home size={16} />
             <span>Home</span>
           </button>
-
-          {/* <button 
+          
+          <button 
             onClick={() => setActiveTab('calculator')}
             className={`btn ${activeTab === 'calculator' ? 'btn-primary' : 'btn-secondary'}`}
             style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '8px' }}
           >
             <Calculator size={16} />
             <span>Calculator</span>
-          </button> */}
+          </button>
 
-          <button
+          <button 
             onClick={() => setActiveTab('admin')}
             className={`btn ${activeTab === 'admin' ? 'btn-primary' : 'btn-secondary'}`}
             style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '8px' }}

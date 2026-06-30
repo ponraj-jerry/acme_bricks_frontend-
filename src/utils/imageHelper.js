@@ -6,16 +6,14 @@ export const getImageUrl = (img) => {
     return img;
   }
   
-  const baseUrl = import.meta.env.VITE_API_URL || '';
-  
-  // If it starts with /images/, append the backend base URL
+  // If it starts with /images/, return as-is
   if (img.startsWith('/images/')) {
-    return `${baseUrl}${img}`;
+    return img;
   }
   
-  // If it's just a filename (e.g. "clay_brick.png"), prepend /images/ and base URL
+  // If it's just a filename (e.g. "clay_brick.png"), prepend /images/
   if (img.startsWith('/')) {
-    return `${baseUrl}/images${img}`;
+    return `/images${img}`;
   }
-  return `${baseUrl}/images/${img}`;
+  return `/images/${img}`;
 };
