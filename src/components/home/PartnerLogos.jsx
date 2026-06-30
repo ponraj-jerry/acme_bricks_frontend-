@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollReveal from '../ScrollReveal.jsx';
 
 export default function PartnerLogos() {
   const partners = [
@@ -17,46 +18,46 @@ export default function PartnerLogos() {
       borderBottom: '1px solid #f1f5f9'
     }}>
       <div className="container">
-        <p style={{
-          textAlign: 'center',
-          fontSize: '12px',
-          fontWeight: 700,
-          color: 'var(--text-muted)',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-          marginBottom: '24px'
-        }}>
-          TRUSTED BY LEADING COMPANIES
-        </p>
+        <ScrollReveal animation="fade-in" delay={100}>
+          <p style={{
+            textAlign: 'center',
+            fontSize: '12px',
+            fontWeight: 700,
+            color: 'var(--text-muted)',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: '24px'
+          }}>
+            TRUSTED BY LEADING COMPANIES
+          </p>
+        </ScrollReveal>
 
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '30px',
-          opacity: 0.55
-        }}>
-          {partners.map((partner) => (
-            <div 
-              key={partner.name}
-              style={{
-                fontSize: '16px',
-                color: '#374151',
-                textAlign: 'center',
-                userSelect: 'none',
-                flex: '1 1 150px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minWidth: '120px',
-                ...partner.style
-              }}
-            >
-              {partner.name}
+        <ScrollReveal animation="fade-in" delay={200}>
+          <div className="logo-ticker-container">
+            <div className="logo-ticker-track">
+              {[...partners, ...partners].map((partner, idx) => (
+                <div 
+                  key={idx}
+                  style={{
+                    fontSize: '16px',
+                    color: '#374151',
+                    textAlign: 'center',
+                    userSelect: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minWidth: '200px',
+                    marginRight: '60px',
+                    flexShrink: 0,
+                    ...partner.style
+                  }}
+                >
+                  {partner.name}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

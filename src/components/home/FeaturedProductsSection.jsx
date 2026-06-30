@@ -1,5 +1,6 @@
 import React from 'react';
 import { getImageUrl } from '../../utils/imageHelper.js';
+import ScrollReveal from '../ScrollReveal.jsx';
 
 export default function FeaturedProductsSection({ products, onQuoteClick, onViewDetails }) {
   // Use first 4 products from backend if loaded, otherwise fall back to matching image specs
@@ -42,18 +43,20 @@ export default function FeaturedProductsSection({ products, onQuoteClick, onView
     }}>
       <div className="container">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div style={{
-            fontSize: '13px',
-            fontWeight: 700,
-            color: 'var(--accent)',
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            marginBottom: '10px'
-          }}>
-            FEATURED PRODUCTS
+        <ScrollReveal animation="slide-up" delay={100}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <div style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: 'var(--accent)',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              marginBottom: '10px'
+            }}>
+              FEATURED PRODUCTS
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Products Grid (1x4) */}
         <div style={{
@@ -61,7 +64,7 @@ export default function FeaturedProductsSection({ products, onQuoteClick, onView
           gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
           gap: '24px'
         }}>
-          {displayProducts.map((prod) => {
+          {displayProducts.map((prod, idx) => {
             // Standardize specs in case data is from backend
             const sizeStr = prod.dimensions 
               ? `Size: ${prod.dimensions.length} x ${prod.dimensions.width} x ${prod.dimensions.height} mm` 
@@ -69,101 +72,119 @@ export default function FeaturedProductsSection({ products, onQuoteClick, onView
             const strengthStr = prod.strength || (prod.characteristics && prod.characteristics[0]) || 'Compressive Strength: High';
 
             return (
-              <div 
+              <ScrollReveal 
                 key={prod.id}
-                style={{
-                  background: '#ffffff',
-                  border: '1px solid var(--border)',
-                  borderRadius: '8px',
-                  padding: '20px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.01)',
-                  transition: 'var(--transition)',
-                  alignItems: 'stretch'
-                }}
-                className="featured-product-card"
+                animation="zoom-in" 
+                delay={150 + idx * 100}
+                style={{ display: 'flex', flexDirection: 'column' }}
               >
-                {/* Product Image */}
-                <div style={{
-                  height: '130px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '20px',
-                  background: '#f8fafc',
-                  borderRadius: '6px',
-                  padding: '10px'
-                }}>
-                  <img 
-                    src={getImageUrl(prod.image)} 
-                    alt={prod.name} 
-                    style={{
-                      maxHeight: '100%',
-                      maxWidth: '100%',
-                      objectFit: 'contain'
-                    }}
-                  />
-                </div>
+                <div 
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid var(--border)',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxShadow: '0 4px 15px rgba(0,0,0,0.01)',
+                    transition: 'var(--transition)',
+                    alignItems: 'stretch',
+                    height: '100%',
+                    overflow: 'hidden'
+                  }}
+                  className="featured-product-card"
+                >
+                  {/* Product Image */}
+                  <div style={{
+                    height: '160px',
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    background: '#f8fafc'
+                  }}>
+                    <img 
+                      src={getImageUrl(prod.image)} 
+                      alt={prod.name} 
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease'
+                      }}
+                      className="product-img-hover"
+                    />
+                  </div>
 
-                {/* Product Name */}
-                <h3 style={{
-                  fontSize: '16px',
-                  fontWeight: 700,
-                  color: 'var(--text-primary)',
-                  marginBottom: '10px'
-                }}>
-                  {prod.name}
-                </h3>
+                  {/* Info Wrapper with Padding */}
+                  <div style={{
+                    padding: '20px',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
+                  }}>
+                    <div>
+                      {/* Product Name */}
+                      <h3 style={{
+                        fontSize: '16px',
+                        fontWeight: 700,
+                        color: 'var(--text-primary)',
+                        marginBottom: '10px'
+                      }}>
+                        {prod.name}
+                      </h3>
 
-                {/* Specs Column */}
-                <div style={{
-                  fontSize: '12px',
-                  color: 'var(--text-secondary)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '4px',
-                  marginBottom: '24px',
-                  flex: 1
-                }}>
-                  <span>{sizeStr}</span>
-                  <span>{strengthStr}</span>
-                </div>
+                      {/* Specs Column */}
+                      <div style={{
+                        fontSize: '12px',
+                        color: 'var(--text-secondary)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '4px',
+                        marginBottom: '24px'
+                      }}>
+                        <span>{sizeStr}</span>
+                        <span>{strengthStr}</span>
+                      </div>
+                    </div>
 
-                {/* Buttons Row */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1.2fr 1fr',
-                  gap: '8px'
-                }}>
-                  <button 
-                    onClick={() => onViewDetails && onViewDetails(prod)}
-                    className="btn btn-secondary"
-                    style={{
-                      padding: '8px 12px',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      borderRadius: '4px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    VIEW DETAILS
-                  </button>
-                  <button 
-                    onClick={() => onQuoteClick(prod)}
-                    className="btn btn-primary"
-                    style={{
-                      padding: '8px 12px',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      borderRadius: '4px',
-                      textAlign: 'center'
-                    }}
-                  >
-                    GET QUOTE
-                  </button>
+                    {/* Buttons Row */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1.2fr 1fr',
+                      gap: '8px'
+                    }}>
+                      <button 
+                        onClick={() => onViewDetails && onViewDetails(prod)}
+                        className="btn btn-secondary"
+                        style={{
+                          padding: '8px 12px',
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          borderRadius: '4px',
+                          textAlign: 'center'
+                        }}
+                      >
+                        VIEW DETAILS
+                      </button>
+                      <button 
+                        onClick={() => onQuoteClick(prod)}
+                        className="btn btn-primary"
+                        style={{
+                          padding: '8px 12px',
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          borderRadius: '4px',
+                          textAlign: 'center'
+                        }}
+                      >
+                        GET QUOTE
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

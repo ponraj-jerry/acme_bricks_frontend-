@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import TopBar from './components/home/TopBar.jsx';
 import Header from './components/home/Header.jsx';
 import HeroSection from './components/home/HeroSection.jsx';
 import PartnerLogos from './components/home/PartnerLogos.jsx';
 import AboutUs from './components/home/AboutUs.jsx';
 import ProductCategories from './components/home/ProductCategories.jsx';
-import WhyChooseUs from './components/home/WhyChooseUs.jsx';
+// import WhyChooseUs from './components/home/WhyChooseUs.jsx';
 import ManufacturingProcess from './components/home/ManufacturingProcess.jsx';
 import FeaturedProductsSection from './components/home/FeaturedProductsSection.jsx';
 import ProjectsTestimonials from './components/home/ProjectsTestimonials.jsx';
 import CTASection from './components/home/CTASection.jsx';
-import ContactForm from './components/ContactForm.jsx';
 import BrickCalculator from './components/BrickCalculator.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Footer from './components/home/Footer.jsx';
@@ -251,7 +249,6 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-      <TopBar />
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <main style={{ flex: 1 }}>
@@ -264,7 +261,7 @@ export default function App() {
             <PartnerLogos />
             <AboutUs />
             <ProductCategories onCategorySelect={(catName) => handleFooterNavigation('products', null, catName)} />
-            <WhyChooseUs />
+            {/* <WhyChooseUs /> */}
             <ManufacturingProcess />
             <FeaturedProductsSection 
               products={products} 
@@ -273,9 +270,6 @@ export default function App() {
             />
             <ProjectsTestimonials />
             <CTASection onQuoteClick={handleScrollToContact} />
-            <div id="contact-section">
-              <ContactForm />
-            </div>
           </>
         )}
 

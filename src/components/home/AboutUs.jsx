@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, Award, Building, Heart, Users } from 'lucide-react';
 import { getImageUrl } from '../../utils/imageHelper.js';
+import ScrollReveal from '../ScrollReveal.jsx';
 
 export default function AboutUs() {
   const stats = [
@@ -24,86 +25,96 @@ export default function AboutUs() {
           alignItems: 'center'
         }}>
           {/* Column 1: Image with Play Video Button */}
-          <div style={{ position: 'relative', width: '100%' }}>
-            <div style={{
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
-              position: 'relative',
-              cursor: 'pointer'
-            }} className="image-hover-zoom">
-              <img 
-                src={getImageUrl('/images/about_office.png')} 
-                alt="ACME Bricks Office" 
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-              {/* Play Overlay */}
+          <ScrollReveal animation="slide-right" delay={100} style={{ width: '100%' }}>
+            <div style={{ position: 'relative', width: '100%' }}>
               <div style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                background: 'rgba(255,255,255,0.95)',
-                backdropFilter: 'blur(5px)',
-                borderRadius: '999px',
-                padding: '10px 18px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
-              }}>
+                borderRadius: '12px',
+                overflow: 'hidden',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
+                position: 'relative',
+                cursor: 'pointer'
+              }} className="image-hover-zoom">
+                <img 
+                  src={getImageUrl('/images/about_office.png')} 
+                  alt="ACME Bricks Office" 
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+                {/* Play Overlay */}
                 <div style={{
-                  background: 'var(--accent)',
-                  borderRadius: '50%',
-                  width: '32px',
-                  height: '32px',
+                  position: 'absolute',
+                  bottom: '20px',
+                  left: '20px',
+                  background: 'rgba(255,255,255,0.95)',
+                  backdropFilter: 'blur(5px)',
+                  borderRadius: '999px',
+                  padding: '10px 18px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  gap: '10px',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
                 }}>
-                  <Play size={14} color="#fff" style={{ marginLeft: '2px' }} />
-                </div>
-                <div>
-                  <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>Watch Video</div>
-                  <div style={{ fontSize: '10px', color: 'var(--text-secondary)', lineHeight: 1.2 }}>About Our Company</div>
+                  <div style={{
+                    background: 'var(--accent)',
+                    borderRadius: '50%',
+                    width: '32px',
+                    height: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Play size={14} color="#fff" style={{ marginLeft: '2px' }} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>Watch Video</div>
+                    <div style={{ fontSize: '10px', color: 'var(--text-secondary)', lineHeight: 1.2 }}>About Our Company</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Column 2: Corporate Details */}
           <div>
-            <div style={{
-              fontSize: '13px',
-              fontWeight: 700,
-              color: 'var(--accent)',
-              letterSpacing: '0.05em',
-              marginBottom: '12px'
-            }}>
-              | ABOUT ACME BRICKS
-            </div>
-            <h2 style={{
-              fontSize: '32px',
-              fontWeight: 800,
-              color: 'var(--text-primary)',
-              lineHeight: 1.2,
-              marginBottom: '20px'
-            }}>
-              Quality Bricks. Stronger Structures. Trusted by Generations.
-            </h2>
-            <p style={{
-              fontSize: '15px',
-              color: 'var(--text-secondary)',
-              lineHeight: 1.6,
-              marginBottom: '30px'
-            }}>
-              ACME Bricks is a leading manufacturer of high quality construction materials with state-of-the-art technology and stringent quality control. We are committed to providing sustainable and durable building solutions.
-            </p>
-            <button 
-              className="btn btn-primary"
-              style={{ padding: '12px 24px', fontSize: '13px', fontWeight: 600, borderRadius: '6px' }}
-            >
-              KNOW MORE ABOUT US
-            </button>
+            <ScrollReveal animation="slide-up" delay={200}>
+              <div style={{
+                fontSize: '13px',
+                fontWeight: 700,
+                color: 'var(--accent)',
+                letterSpacing: '0.05em',
+                marginBottom: '12px'
+              }}>
+                | ABOUT ACME BRICKS
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="slide-up" delay={300}>
+              <h2 style={{
+                fontSize: '32px',
+                fontWeight: 800,
+                color: 'var(--text-primary)',
+                lineHeight: 1.2,
+                marginBottom: '20px'
+              }}>
+                Quality Bricks. Stronger Structures. Trusted by Generations.
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal animation="slide-up" delay={400}>
+              <p style={{
+                fontSize: '15px',
+                color: 'var(--text-secondary)',
+                lineHeight: 1.6,
+                marginBottom: '30px'
+              }}>
+                ACME Bricks is a leading manufacturer of high quality construction materials with state-of-the-art technology and stringent quality control. We are committed to providing sustainable and durable building solutions.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal animation="slide-up" delay={500}>
+              <button 
+                className="btn btn-primary"
+                style={{ padding: '12px 24px', fontSize: '13px', fontWeight: 600, borderRadius: '6px' }}
+              >
+                KNOW MORE ABOUT US
+              </button>
+            </ScrollReveal>
           </div>
 
           {/* Column 3: Metrics Grid (2x2) */}
@@ -113,43 +124,48 @@ export default function AboutUs() {
             gap: '20px'
           }}>
             {stats.map((stat, idx) => (
-              <div 
+              <ScrollReveal 
                 key={idx}
-                style={{
-                  background: '#ffffff',
-                  border: '1px solid var(--border)',
-                  borderRadius: '8px',
-                  padding: '24px 16px',
-                  textAlign: 'center',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.015)',
-                  transition: 'var(--transition)'
-                }}
-                className="stat-card"
+                animation="zoom-in" 
+                delay={200 + idx * 150}
               >
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginBottom: '12px'
-                }}>
-                  {stat.icon}
+                <div 
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid var(--border)',
+                    borderRadius: '8px',
+                    padding: '24px 16px',
+                    textAlign: 'center',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.015)',
+                    transition: 'var(--transition)'
+                  }}
+                  className="stat-card"
+                >
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginBottom: '12px'
+                  }}>
+                    {stat.icon}
+                  </div>
+                  <div style={{
+                    fontSize: '24px',
+                    fontWeight: 800,
+                    color: 'var(--text-primary)',
+                    marginBottom: '4px'
+                  }}>
+                    {stat.value}
+                  </div>
+                  <div style={{
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    color: 'var(--text-secondary)',
+                    lineHeight: 1.2
+                  }}>
+                    {stat.label}
+                  </div>
                 </div>
-                <div style={{
-                  fontSize: '24px',
-                  fontWeight: 800,
-                  color: 'var(--text-primary)',
-                  marginBottom: '4px'
-                }}>
-                  {stat.value}
-                </div>
-                <div style={{
-                  fontSize: '12px',
-                  fontWeight: 600,
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.2
-                }}>
-                  {stat.label}
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

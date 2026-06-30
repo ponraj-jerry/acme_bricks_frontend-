@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Leaf, Clock, Phone, MessageSquare, Mail } from 'lucide-react';
 import { getImageUrl } from '../../utils/imageHelper.js';
+import ScrollReveal from '../ScrollReveal.jsx';
 
 export default function HeroSection({ onExploreClick, onQuoteClick }) {
   return (
@@ -25,19 +26,21 @@ export default function HeroSection({ onExploreClick, onQuoteClick }) {
         marginRight: 'auto'
       }}>
         {/* Tagline */}
-        <div style={{
-          fontSize: '14px',
-          fontWeight: 700,
-          color: 'var(--accent)',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          marginBottom: '16px'
-        }}>
-          PREMIUM QUALITY BRICKS & BLOCKS
-        </div>
+        <ScrollReveal animation="slide-up" delay={100}>
+          <div style={{
+            fontSize: '14px',
+            fontWeight: 700,
+            color: 'var(--accent)',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            marginBottom: '16px'
+          }}>
+            PREMIUM QUALITY BRICKS & BLOCKS
+          </div>
+        </ScrollReveal>
 
         {/* Heading */}
-        <h1 style={{
+        <ScrollReveal animation="slide-up" delay={250} as="h1" style={{
           fontSize: '56px',
           fontWeight: 800,
           lineHeight: 1.1,
@@ -46,10 +49,10 @@ export default function HeroSection({ onExploreClick, onQuoteClick }) {
           maxWidth: '800px'
         }}>
           Building Stronger Foundations for Tomorrow
-        </h1>
+        </ScrollReveal>
 
         {/* Subtitle */}
-        <p style={{
+        <ScrollReveal animation="slide-up" delay={400} as="p" style={{
           fontSize: '18px',
           color: '#cbd5e1',
           maxWidth: '700px',
@@ -57,7 +60,7 @@ export default function HeroSection({ onExploreClick, onQuoteClick }) {
           marginBottom: '40px'
         }}>
           Manufacturer of high quality Fly Ash Bricks, Solid Blocks, Paver Blocks & Interlock Blocks for a stronger and sustainable tomorrow.
-        </p>
+        </ScrollReveal>
 
         {/* Feature Icons Row */}
         <div style={{
@@ -66,65 +69,73 @@ export default function HeroSection({ onExploreClick, onQuoteClick }) {
           gap: '30px',
           marginBottom: '50px'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ background: 'rgba(124, 161, 58, 0.2)', padding: '8px', borderRadius: '50%' }}>
-              <ShieldCheck size={20} color="var(--accent)" />
+          <ScrollReveal animation="fade-in" delay={550}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ background: 'rgba(124, 161, 58, 0.2)', padding: '8px', borderRadius: '50%' }}>
+                <ShieldCheck size={20} color="var(--accent)" />
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '15px' }}>Premium Quality</div>
+                <div style={{ fontSize: '13px', color: '#94a3b8' }}>Tested & Certified</div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '15px' }}>Premium Quality</div>
-              <div style={{ fontSize: '13px', color: '#94a3b8' }}>Tested & Certified</div>
-            </div>
-          </div>
+          </ScrollReveal>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ background: 'rgba(124, 161, 58, 0.2)', padding: '8px', borderRadius: '50%' }}>
-              <Leaf size={20} color="var(--accent)" />
+          <ScrollReveal animation="fade-in" delay={700}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ background: 'rgba(124, 161, 58, 0.2)', padding: '8px', borderRadius: '50%' }}>
+                <Leaf size={20} color="var(--accent)" />
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '15px' }}>Eco Friendly</div>
+                <div style={{ fontSize: '13px', color: '#94a3b8' }}>Sustainable Choice</div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '15px' }}>Eco Friendly</div>
-              <div style={{ fontSize: '13px', color: '#94a3b8' }}>Sustainable Choice</div>
-            </div>
-          </div>
+          </ScrollReveal>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ background: 'rgba(124, 161, 58, 0.2)', padding: '8px', borderRadius: '50%' }}>
-              <Clock size={20} color="var(--accent)" />
+          <ScrollReveal animation="fade-in" delay={850}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ background: 'rgba(124, 161, 58, 0.2)', padding: '8px', borderRadius: '50%' }}>
+                <Clock size={20} color="var(--accent)" />
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '15px' }}>Timely Delivery</div>
+                <div style={{ fontSize: '13px', color: '#94a3b8' }}>On Time, Every Time</div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: '15px' }}>Timely Delivery</div>
-              <div style={{ fontSize: '13px', color: '#94a3b8' }}>On Time, Every Time</div>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-          <button 
-            onClick={onExploreClick}
-            className="btn btn-primary"
-            style={{ padding: '14px 28px', fontSize: '15px', borderRadius: '6px' }}
-          >
-            EXPLORE PRODUCTS
-          </button>
-          <button 
-            onClick={onQuoteClick}
-            className="btn"
-            style={{
-              padding: '14px 28px',
-              fontSize: '15px',
-              borderRadius: '6px',
-              background: 'transparent',
-              color: '#ffffff',
-              border: '2px solid rgba(255, 255, 255, 0.3)'
-            }}
-          >
-            GET A QUOTE
-          </button>
-        </div>
+        <ScrollReveal animation="slide-up" delay={1000}>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <button 
+              onClick={onExploreClick}
+              className="btn btn-primary"
+              style={{ padding: '14px 28px', fontSize: '15px', borderRadius: '6px' }}
+            >
+              EXPLORE PRODUCTS
+            </button>
+            <button 
+              onClick={onQuoteClick}
+              className="btn"
+              style={{
+                padding: '14px 28px',
+                fontSize: '15px',
+                borderRadius: '6px',
+                background: 'transparent',
+                color: '#ffffff',
+                border: '2px solid rgba(255, 255, 255, 0.3)'
+              }}
+            >
+              GET A QUOTE
+            </button>
+          </div>
+        </ScrollReveal>
       </div>
 
       {/* Floating Sticky Sidebar (Fixed on screen right) */}
-      <div style={{
+      <ScrollReveal animation="slide-left" delay={1150} style={{
         position: 'fixed',
         right: 0,
         top: '50%',
@@ -204,7 +215,7 @@ export default function HeroSection({ onExploreClick, onQuoteClick }) {
           <Mail size={16} style={{ color: '#38bdf8' }} />
           <span>Email Us</span>
         </a>
-      </div>
+      </ScrollReveal>
     </div>
   );
 }

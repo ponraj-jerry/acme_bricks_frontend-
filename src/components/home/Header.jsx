@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Menu, X } from 'lucide-react';
+import { getImageUrl } from '../../utils/imageHelper.js';
 
 export default function Header({ activeTab, setActiveTab }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,19 +50,31 @@ export default function Header({ activeTab, setActiveTab }) {
           onClick={() => navigateToSection('home')}
           style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
         >
-          <div style={{
-            background: 'var(--accent)',
-            padding: '6px',
-            borderRadius: '6px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <Layers size={18} color="#fff" />
+          <img 
+            src={getImageUrl('logo.png')} 
+            alt="ACME Bricks Logo" 
+            style={{ height: '36px', display: 'block' }}
+            onError={(e) => {
+              e.target.style.display = 'none';
+              const textLogo = e.target.nextSibling;
+              if (textLogo) textLogo.style.display = 'flex';
+            }}
+          />
+          <div style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              background: 'var(--accent)',
+              padding: '6px',
+              borderRadius: '6px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Layers size={18} color="#fff" />
+            </div>
+            <span style={{ fontSize: '20px', fontWeight: 800, color: '#1e293b', letterSpacing: '-0.02em' }}>
+              ACME<span style={{ color: 'var(--accent)' }}>BRICKS</span>
+            </span>
           </div>
-          <span style={{ fontSize: '20px', fontWeight: 800, color: '#1e293b', letterSpacing: '-0.02em' }}>
-            ACME<span style={{ color: 'var(--accent)' }}>BRICKS</span>
-          </span>
         </div>
 
         {/* Desktop Navigation Links */}

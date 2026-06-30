@@ -486,3 +486,302 @@ a {
     height: 350px !important;
   }
 }
+
+/* Scroll Reveal Base Styles */
+.reveal-element {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-fade-in.active {
+  opacity: 1;
+}
+
+.reveal-slide-up {
+  transform: translateY(40px);
+}
+.reveal-slide-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-slide-down {
+  transform: translateY(-40px);
+}
+.reveal-slide-down.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-slide-left {
+  transform: translateX(-40px);
+}
+.reveal-slide-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-slide-right {
+  transform: translateX(40px);
+}
+.reveal-slide-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-zoom-in {
+  transform: scale(0.92);
+}
+.reveal-zoom-in.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-zoom-out {
+  transform: scale(1.08);
+}
+.reveal-zoom-out.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Float Animation for Hero decoration */
+@keyframes ambientFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.floating-element {
+  animation: ambientFloat 6s ease-in-out infinite;
+}
+
+/* Manufacturing Process Hover Animation */
+.process-circle {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.process-circle:hover {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border-color: var(--accent) !important;
+  transform: scale(1.15) rotate(5deg) !important;
+  box-shadow: 0 10px 25px rgba(124, 161, 58, 0.3) !important;
+}
+
+.process-circle:hover svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Testimonials Carousel Nav Buttons Hover Animation */
+.carousel-nav-btn {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.carousel-nav-btn:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.carousel-nav-btn:hover svg {
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Endless logo marquee ticker */
+.logo-ticker-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+}
+
+.logo-ticker-container::before,
+.logo-ticker-container::after {
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-ticker-container::before {
+  left: 0;
+  top: 0;
+  background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+}
+
+.logo-ticker-container::after {
+  right: 0;
+  top: 0;
+  background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+}
+
+.logo-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: logoMarquee 25s linear infinite;
+}
+
+.logo-ticker-container:hover .logo-ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes logoMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Product Category Cards Hover Effects */
+.category-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 12px 30px rgba(124, 161, 58, 0.08) !important;
+}
+
+.category-card:hover .product-img-hover {
+  transform: scale(1.08);
+}
+
+.category-card:hover .arrow-btn {
+  background: var(--accent) !important;
+  box-shadow: 0 4px 12px rgba(124, 161, 58, 0.4) !important;
+}
+
+/* Featured Product Cards Hover Effects */
+.featured-product-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.featured-product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent) !important;
+  box-shadow: 0 12px 30px rgba(124, 161, 58, 0.08) !important;
+}
+
+.featured-product-card:hover .product-img-hover {
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   Responsive Media Queries for Mobile & Tablet Support
+   ========================================================================== */
+
+/* Tablet & Mobile Screens (max-width: 992px) */
+@media (max-width: 992px) {
+  /* About Us Section Split Grid */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 35px !important;
+  }
+
+  /* Projects & Testimonials Grid */
+  .split-projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  /* Why Choose Us Grid */
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  /* Footer Columns Grid */
+  .footer-columns-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+  }
+}
+
+/* Mobile Screens (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Header Responsive Navigation Menu */
+  .desktop-menu {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+
+  /* Hero Section */
+  .split-hero {
+    flex-direction: column-reverse !important;
+    text-align: center;
+    gap: 30px !important;
+  }
+  
+  .split-hero h1 {
+    font-size: 32px !important;
+    line-height: 1.25 !important;
+  }
+  
+  .hero-visual-col {
+    height: 300px !important;
+    flex-basis: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .hero-feature-row {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+
+  /* Manufacturing Process Connections */
+  .process-chevron {
+    display: none !important;
+  }
+
+  /* Call to Action (CTA) Section */
+  #cta-section > .container {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 20px !important;
+  }
+  
+  #cta-section > .container > div {
+    flex-basis: 100% !important;
+  }
+
+  #cta-section > .container > div:last-child {
+    justify-content: center !important;
+  }
+}
+
+/* Small Mobile Screens (max-width: 600px) */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Why Choose Us Grid */
+  .why-choose-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer Columns Grid */
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
