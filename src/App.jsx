@@ -94,7 +94,14 @@ const MOCK_CATALOG = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
+  const getInitialTab = () => {
+    const hash = window.location.hash || '#home';
+    const [tab] = hash.substring(1).split('/');
+    const validTabs = ['home', 'about', 'products', 'product-details', 'calculator', 'admin', 'contact'];
+    return validTabs.includes(tab) ? tab : 'home';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [products, setProducts] = useState(MOCK_CATALOG);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -103,6 +110,65 @@ export default function App() {
   const [activeFilters, setActiveFilters] = useState({});
   const [sortOption, setSortOption] = useState('latest');
   const [selectedProductDetail, setSelectedProductDetail] = useState(null);
+  const [pendingProductId, setPendingProductId] = useState(() => {
+    const hash = window.location.hash || '';
+    if (hash.startsWith('#product-details/')) {
+      return hash.split('/')[1];
+    }
+    return null;
+  });
+
+  // Sync state to URL hash
+  useEffect(() => {
+    if (activeTab === 'product-details' && selectedProductDetail) {
+      const targetHash = `#product-details/${selectedProductDetail.id}`;
+      if (window.location.hash !== targetHash) {
+        window.location.hash = targetHash;
+      }
+    } else {
+      const targetHash = `#${activeTab}`;
+      if (window.location.hash !== targetHash) {
+        window.location.hash = targetHash;
+      }
+    }
+  }, [activeTab, selectedProductDetail]);
+
+  // Handle browser back/forward navigation or manual URL edits
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash || '#home';
+      const [tab, param] = hash.substring(1).split('/');
+      const validTabs = ['home', 'about', 'products', 'product-details', 'calculator', 'admin', 'contact'];
+      
+      if (validTabs.includes(tab)) {
+        setActiveTab(tab);
+        if (tab === 'product-details' && param) {
+          const found = products.find(p => p.id === param);
+          if (found) {
+            setSelectedProductDetail(found);
+          } else {
+            setPendingProductId(param);
+          }
+        }
+      } else {
+        window.location.hash = '#home';
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [products]);
+
+  // Resolve pending product detail once products are loaded
+  useEffect(() => {
+    if (pendingProductId && products.length > 0) {
+      const found = products.find(p => p.id === pendingProductId);
+      if (found) {
+        setSelectedProductDetail(found);
+        setPendingProductId(null);
+      }
+    }
+  }, [products, pendingProductId]);
 
   const handleViewDetails = (product) => {
     setSelectedProductDetail(product);
